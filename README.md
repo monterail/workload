@@ -25,14 +25,14 @@ with every line of that file and that processing can be done in parallel.
 require "rubygems"
 require "workload"
 
-Workload.run do |p|
-  p.produce(1) do |queue|       # 1 is the default number of producer threads
+Workload.run do |w|
+  w.produce(1) do |queue|       # 1 is the default number of producer threads
     while line = STDIN.gets
       queue << line             # The pipe is simple ruby Queue
     end
   end
 
-  p.consume(5) do |line|        # Here we are spawning 5 consumer threads
+  w.consume(5) do |line|        # Here we are spawning 5 consumer threads
     print "[#{Thread.current[:id]}] consuming line: #{line}"
     # do something useful with that input
   end
