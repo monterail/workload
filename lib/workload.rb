@@ -1,4 +1,5 @@
 require "workload/version"
+require "thread"
 
 module Workload
   class Gen
