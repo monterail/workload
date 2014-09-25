@@ -27,7 +27,8 @@ module Workload
 
     def make_producers
       @producers_num.times.map do |i|
-        Thread.new do
+        Thread.new(i) do |j|
+          Thread.current[:id] = j
           @produce.call(@queue)
         end
       end
